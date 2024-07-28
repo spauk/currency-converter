@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: currency-converter
+exchange-rate-provider:
+  swop:
+    base-url: https://swop.cx/rest
+    api-key: f7b7c78c00e03d3dc7e05078931e45e8e4ecff663f62c1536f19623b1d0aa233
+caching:
+  spring:
+    rates-cache-ttl: 3600000 # one hour in ms
+    currencies-cache-ttl: 3600000 # one hour in ms
