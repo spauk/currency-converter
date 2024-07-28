@@ -1,5 +1,7 @@
 package org.spauk.currencyconverter.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.ConstraintViolationException;
 import jakarta.validation.constraints.PositiveOrZero;
 import org.spauk.currencyconverter.exception.InvalidCurrencyCodeException;
@@ -22,6 +24,7 @@ import java.util.List;
 
 @RestController
 @Validated
+@Tag(name = "Currency conversion", description = "Provides endpoints for currency conversion and supported currency codes")
 public class CurrencyConversionController {
 
     private Logger logger = LoggerFactory.getLogger(CurrencyConversionController.class);
@@ -33,6 +36,7 @@ public class CurrencyConversionController {
     private SupportedCurrenciesService supportedCurrenciesService;
 
     @GetMapping("/conversions")
+    @Operation(summary = "Convert currency", description = "Converts the given money amount from source currency to the target currency")
     public Mono<BigDecimal> getConversions(
             @RequestParam @PositiveOrZero BigDecimal amount,
             @RequestParam(name = "from") String sourceCurrency,
@@ -55,6 +59,7 @@ public class CurrencyConversionController {
     }
 
     @GetMapping("/currencies")
+    @Operation(summary = "Get supported currencies", description = "Returns a list of supported currency codes")
     public Mono<List<String>> getSupportedCurrencies() {
         logger.info("Received get supported currencies request");
         return supportedCurrenciesService.getCurrencies();

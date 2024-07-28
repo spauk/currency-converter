@@ -9,3 +9,8 @@ caching:
   spring:
     rates-cache-ttl: 3600000 # one hour in ms
     currencies-cache-ttl: 3600000 # one hour in ms
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /v3/swagger-ui/index.html
